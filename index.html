@@ -3,77 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rita & Tiago — Gestão Financeira</title>
+    <title>Rita & Tiago — Bíblia de Casamento</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('sw.js')
-            .then(function(reg) { console.log('PWA ativa:', reg.scope); })
-            .catch(function(err) { console.log('Erro PWA:', err); });
+          navigator.serviceWorker.register('sw.js');
         });
       }
     </script>
 </head>
 <body>
 
-    <!-- Contentor centralizado que simula o iPhone 17 Pro Max -->
     <div class="iphone-container">
-        
-        <!-- Barra de Estado Fixa no Topo -->
-        <div class="status-bar">
-            <span class="time">9:41</span>
-            <div class="icons">📶 🔋</div>
+        <!-- Ecrã de Início -->
+        <div id="tab-inicio" class="tab-content active">
+            <div class="header-card">
+                <div class="top-meta">
+                    <span class="time-sim">23:22</span>
+                    <span class="sub-title">Bíblia de casamento</span>
+                </div>
+                <h1 class="main-title">Início</h1>
+                
+                <div class="names-section">
+                    <h2>Rita <span class="ampersand">&</span> Tiago</h2>
+                    <p class="location">Igreja de Aldreu · Quinta de Santo André, Barcelos</p>
+                </div>
+
+                <div class="countdown-section">
+                    <span class="days-number">327</span>
+                    <span class="days-label">dias até<br><strong>30 de julho de 2027</strong></span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-value">0/89</span>
+                    <span class="stat-desc">convidados confirmados</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value">70%</span>
+                    <span class="stat-desc">do orçamento gasto</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value">8904 €</span>
+                    <span class="stat-desc">ainda por gastar</span>
+                </div>
+            </div>
+
+            <div class="section-title">Acesso rápido</div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="switchTab('orcamento')">
+                    <div class="menu-icon icon-gold">📒</div>
+                    <div class="menu-text">
+                        <strong>Orçamento</strong>
+                        <span>30 000 € planeados</span>
+                    </div>
+                    <div class="arrow">›</div>
+                </div>
+                <div class="menu-item" onclick="switchTab('convidados')">
+                    <div class="menu-icon icon-blue">👥</div>
+                    <div class="menu-text">
+                        <strong>Convidados</strong>
+                        <span>0 confirmados de 89</span>
+                    </div>
+                    <div class="arrow">›</div>
+                </div>
+                <div class="menu-item" onclick="switchTab('gastos')">
+                    <div class="menu-icon icon-red">📊</div>
+                    <div class="menu-text">
+                        <strong>Controlo de gastos</strong>
+                        <span>21 096 € já registados</span>
+                    </div>
+                    <div class="arrow">›</div>
+                </div>
+                <div class="menu-item" onclick="switchTab('mesas')">
+                    <div class="menu-icon icon-rose">🍽️</div>
+                    <div class="menu-text">
+                        <strong>Mesas e lugares</strong>
+                        <span>12 mesas - 10 lugares cada</span>
+                    </div>
+                    <div class="arrow">›</div>
+                </div>
+            </div>
+
+            <div class="section-title">O grande dia</div>
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="menu-icon icon-blue">⛪</div>
+                    <div class="menu-text">
+                        <strong>Cerimónia</strong>
+                        <span>12h · Igreja de Aldreu, Barcelos</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon icon-gold">🥂</div>
+                    <div class="menu-text">
+                        <strong>Cocktail</strong>
+                        <span>14h · Quinta de Santo André</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Título do Ecrã -->
-        <header>
-            <h1>Novo movimento</h1>
-        </header>
-
-        <!-- Formulário com os campos do protótipo -->
-        <main>
-            <form id="movimentoForm">
-                <div class="form-group">
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" placeholder="Ex: Supermercado">
+        <!-- Ecrã Separador: Mesas (Com correção de espaço e títulos afastados) -->
+        <div id="tab-mesas" class="tab-content">
+            <h1 class="page-title">Mesas & Lugares</h1>
+            <div class="tables-scroll-container">
+                <div class="tables-grid">
+                    <!-- Gerado dinamicamente por JS ou adicionado manualmente -->
+                    <div class="table-card">
+                        <h3>Mesa 1</h3>
+                        <p>10 Lugares disponíveis</p>
+                    </div>
+                    <div class="table-card">
+                        <h3>Mesa 2</h3>
+                        <p>10 Lugares disponíveis</p>
+                    </div>
+                    <div class="table-card">
+                        <h3>Mesa 3</h3>
+                        <p>10 Lugares disponíveis</p>
+                    </div>
+                    <div class="table-card">
+                        <h3>Mesa 4</h3>
+                        <p>10 Lugares disponíveis</p>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="form-group">
-                    <label for="data">Data</label>
-                    <input type="date" id="data">
-                </div>
+        <!-- Outros Separadores Vazios para Expansão Futura -->
+        <div id="tab-orcamento" class="tab-content"><h1 class="page-title">Orçamento</h1></div>
+        <div id="tab-convidados" class="tab-content"><h1 class="page-title">Convidados</h1></div>
+        <div id="tab-gastos" class="tab-content"><h1 class="page-title">Gastos</h1></div>
 
-                <div class="form-group">
-                    <label for="valorTotal">Valor total (€)</label>
-                    <input type="number" id="valorTotal" step="0.01" placeholder="0,00">
-                </div>
-
-                <div class="form-group">
-                    <label for="jaPago">Já pago (€)</label>
-                    <input type="number" id="jaPago" step="0.01" placeholder="0,00">
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="Alimentação">Alimentação</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Transportes">Transportes</option>
-                        <option value="Casa">Casa</option>
-                    </select>
-                </div>
-            </form>
-        </main>
-
-        <!-- Barra de Ações no Fundo (Conforme o protótipo) -->
-        <footer class="action-bar">
-            <button class="btn-secondary" onclick="limparFormulario()">Cancelar</button>
-            <button class="btn-primary" onclick="guardarMovimento()">Guardar</button>
-        </footer>
-
+        <!-- Barra de Navegação Inferior (Fiel à imagem) -->
+        <nav class="bottom-nav">
+            <div class="nav-btn active" onclick="switchTab('inicio')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Início</span>
+            </div>
+            <div class="nav-btn" onclick="switchTab('orcamento')">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Orçamento</span>
+            </div>
+            <div class="nav-btn" onclick="switchTab('convidados')">
+                <span class="nav-icon">🛒</span>
+                <span class="nav-label">Convidados</span>
+            </div>
+            <div class="nav-btn" onclick="switchTab('gastos')">
+                <span class="nav-icon">🪙</span>
+                <span class="nav-label">Gastos</span>
+            </div>
+            <div class="nav-btn" onclick="switchTab('mesas')">
+                <span class="nav-icon">🪑</span>
+                <span class="nav-label">Mesas</span>
+            </div>
+        </nav>
     </div>
 
     <script src="script.js"></script>
