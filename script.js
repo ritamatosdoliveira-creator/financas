@@ -1,24 +1,23 @@
-function guardarMovimento() {
-    const descricao = document.getElementById('descricao').value;
-    const data = document.getElementById('data').value;
-    const valorTotal = document.getElementById('valorTotal').value;
-    const jaPago = document.getElementById('jaPago').value;
-    const categoria = document.getElementById('categoria').value;
+function switchTab(tabId) {
+    // Esconde todos os conteúdos das abas
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
 
-    if (!descricao || !valorTotal) {
-        alert('Por favor, preencha a Descrição e o Valor Total.');
-        return;
+    // Desativa todos os botões de navegação
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // Mostra o conteúdo da aba selecionada
+    const targetContent = document.getElementById(`tab-${tabId}`);
+    if (targetContent) {
+        targetContent.classList.add('active');
     }
 
-    // Cria o objeto do movimento
-    const movimento = { descricao, data, valorTotal, jaPago, categoria };
-    
-    // Mostra os dados guardados numa caixa de aviso
-    alert(`Movimento "${movimento.descricao}" guardado com sucesso para a conta de Rita & Tiago!`);
-    
-    limparFormulario();
-}
-
-function limparFormulario() {
-    document.getElementById('movimentoForm').reset();
+    // Ativa o botão correspondente na barra inferior
+    const targetBtn = Array.from(buttons).find(btn => 
+        btn.getAttribute('onclick').includes(`'${tabId}'`)
+    );
+    if (targetBtn) {
+        targetBtn.classList.add('active');
+    }
 }
