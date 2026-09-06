@@ -1,63 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rita & Tiago — Gestão Financeira</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+function guardarMovimento() {
+    const descricao = document.getElementById('descricao').value;
+    const data = document.getElementById('data').value;
+    const valorTotal = document.getElementById('valorTotal').value;
+    const jaPago = document.getElementById('jaPago').value;
+    const categoria = document.getElementById('categoria').value;
 
-    <!-- Barra de Estado Simulada (Estilo iOS) -->
-    <div class="status-bar">
-        <span>9:41</span>
-        <div class="icons">📶 🔋</div>
-    </div>
+    if (!descricao || !valorTotal) {
+        alert('Por favor, preencha a Descrição e o Valor Total.');
+        return;
+    }
 
-    <!-- Ecrã Principal da App -->
-    <div class="app-container">
-        <header>
-            <button class="btn-secondary" onclick="limparFormulario()">Cancelar</button>
-            <h1>Novo movimento</h1>
-            <button class="btn-primary" onclick="guardarMovimento()">Guardar</button>
-        </header>
+    // Cria o objeto do movimento
+    const movimento = { descricao, data, valorTotal, jaPago, categoria };
+    
+    // Mostra os dados guardados numa caixa de aviso
+    alert(`Movimento "${movimento.descricao}" guardado com sucesso para a conta de Rita & Tiago!`);
+    
+    limparFormulario();
+}
 
-        <main>
-            <form id="movimentoForm">
-                <div class="form-group">
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" placeholder="Ex: Supermercado">
-                </div>
-
-                <div class="form-group">
-                    <label for="data">Data</label>
-                    <input type="date" id="data">
-                </div>
-
-                <div class="form-group">
-                    <label for="valorTotal">Valor total (€)</label>
-                    <input type="number" id="valorTotal" step="0.01" placeholder="0,00">
-                </div>
-
-                <div class="form-group">
-                    <label for="jaPago">Já pago (€)</label>
-                    <input type="number" id="jaPago" step="0.01" placeholder="0,00">
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="Alimentação">Alimentação</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Transportes">Transportes</option>
-                        <option value="Casa">Casa</option>
-                    </select>
-                </div>
-            </form>
-        </main>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+function limparFormulario() {
+    document.getElementById('movimentoForm').reset();
+}
